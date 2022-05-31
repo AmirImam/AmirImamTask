@@ -1,0 +1,19 @@
+<FormContainer>
+    <form #form (submit)="Submit()">
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Item name</label>
+            <input type="text" [(ngModel)]="Model.ItemName" class="form-control" name="ItemName" id="ItemName" required>
+            <ErrorSummary [Keys]="['ItemName']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Price</label>
+            <input type="number" [(ngModel)]="Model.Price" class="form-control" name="Price" id="Price" required>
+            <ErrorSummary [Keys]="['Price']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-dark" [routerLink]="['/items']">Back</a>
+    </form>
+</FormContainer>

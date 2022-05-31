@@ -10,6 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorSummaryComponent } from './components/error-summary/error-summary.component';
+import { UsersIndexComponent } from './components/users-index/users-index.component';
+import { StoresIndexComponent } from './components/stores-index/stores-index.component';
+import { StoresFormComponent } from './components/stores-form/stores-form.component';
+import { FormContainerComponent } from './components/form-container/form-container.component';
+import { ItemsIndexComponent } from './components/items-index/items-index.component';
+import { ItemsFormComponent } from './components/items-form/items-form.component';
+import { ItemStoresComponent } from './components/item-stores/item-stores.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +25,14 @@ import { ErrorSummaryComponent } from './components/error-summary/error-summary.
     LoginComponent,
     StartupComponent,
     RegisterComponent,
-    ErrorSummaryComponent
+    ErrorSummaryComponent,
+    UsersIndexComponent,
+    StoresIndexComponent,
+    StoresFormComponent,
+    FormContainerComponent,
+    ItemsIndexComponent,
+    ItemsFormComponent,
+    ItemStoresComponent
 
   ],
   imports: [

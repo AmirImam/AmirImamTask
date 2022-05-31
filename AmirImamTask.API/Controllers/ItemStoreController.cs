@@ -1,4 +1,6 @@
 
+using AmirImamTask.Entities.Dtos;
+
 namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
@@ -53,8 +55,12 @@ public class ItemStoreController : ControllerBase, IItemStoreServiceBase<IAction
         }
         return BadRequest(result);
     }
-
-    
-
+    [HttpGet]
+    [Route("/api/ItemStore/GetItemStoresByItem/{itemId}")]
+    public async Task<IEnumerable<ItemStoreDto>> GetItemStoresByItemAsync(Guid itemId)
+    {
+        var result = await service.GetItemStoresByItemAsync(itemId);
+        return result;
+    }
 }
 

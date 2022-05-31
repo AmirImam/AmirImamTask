@@ -22,20 +22,44 @@ export class ApiCallerService {
     return headers;
   }
 
-  public async PostAsync<T>(path: string, model: any): Promise<ResponseResult<T>> {
+  public async GetAllAsync<T>(path: string): Promise<T[]> {
     let response = await fetch(`${this.BaseUrl}${path}`, {
-      body: JSON.stringify(model),
-      method: "POST",
-      headers: this.RequestHeaders
+      headers: this.RequestHeaders,
+      method: "GET"
     });
+    let json = await response.json() as T[];
+    return json;
+  }
 
-    // if (response.status != 200) {
-    //   let text = await response.text();
-    //   let errors = JSON.parse(text) as Array<{ Key: string, Value: Array<string> }>;
-    //   let result = new ResponseResult<T>();
-    //   result.Errors = errors;
-    //   return result;
-    // }
+  public async GetByIdAsync<T>(path: string, id: string): Promise<T> {
+    let response = await fetch(`${this.BaseUrl}${path}/${id}`, {
+      headers: this.RequestHeaders,
+      method: "GET"
+    });
+    let json = await response.json() as T;
+    return json;
+  }
+
+
+  public async PostAsync<T>(path: string, model: any): Promise<ResponseResult<T>> {
+    return await this.SendAsync<T>(path, "POST", model);
+  }
+
+  public async PutAsync<T>(path: string, model: any): Promise<ResponseResult<T>> {
+    return await this.SendAsync<T>(path, "PUT", model);
+  }
+
+  public async SendAsync<T>(path: string, method: string, model: any): Promise<ResponseResult<T>> {
+    let request: RequestInit = {
+      body: null,
+      method: method,
+      headers: this.RequestHeaders
+    };
+    if (model != null) {
+      request.body = JSON.stringify(model);
+    }
+    let response = await fetch(`${this.BaseUrl}${path}`, request);
+
     let responseText = await response.text();
     responseText = responseText.replace("errors", "Errors");
     let responseJson = JSON.parse(responseText) as ResponseResult<T>;// (await response.json()) as ResponseResult<T>;// (await firstValueFrom(response));

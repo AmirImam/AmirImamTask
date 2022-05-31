@@ -1,0 +1,22 @@
+<FormContainer>
+    <form #form (submit)="Submit()">
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Store name</label>
+            <input type="text" [(ngModel)]="Model.StoreName" class="form-control" name="StoreName" id="StoreName"
+                required>
+            <ErrorSummary [Keys]="['StoreName']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Store adminstrator</label>
+            <select [(ngModel)]="Model.PersonId" class="form-control" name="PersonId" id="PersonId">
+                <option *ngFor="let person of PersonsList" [value]="person.Id">{{person.PersonName}}</option>
+            </select>
+            <ErrorSummary [Keys]="['PersonId']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-dark" [routerLink]="['/stores']">Back</a>
+    </form>
+</FormContainer>

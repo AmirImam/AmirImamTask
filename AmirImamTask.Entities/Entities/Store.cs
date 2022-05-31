@@ -9,4 +9,7 @@ public class Store : EntityBase
     public Guid? PersonId { get; set; }
     public Person? Person { get; set; }
     public ICollection<ItemStore>? ItemStores { get; set; }
+
+    [NotMapped]
+    public string? PersonName { get; set; }
 }

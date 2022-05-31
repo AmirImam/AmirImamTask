@@ -6,11 +6,11 @@ namespace AmirImamTask.BusinessServices;
 
 public class ServiceBase<T> : IServiceBase<T,ResponseResult<T>> where T : EntityBase
 {
-    private readonly ApplicationDbContext context;
+    protected readonly ApplicationDbContext Context;
 
     public ServiceBase(ApplicationDbContext context)
     {
-        this.context = context;
+        this.Context = context;
         this.Set = context.Set<T>();
     }
     protected DbSet<T> Set { get; }
@@ -23,7 +23,7 @@ public class ServiceBase<T> : IServiceBase<T,ResponseResult<T>> where T : Entity
         try
         {
             Set.Add(entity);
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
             return ResponseResult<T>.Ok(entity);
         }
         catch (Exception ex)
@@ -36,7 +36,7 @@ public class ServiceBase<T> : IServiceBase<T,ResponseResult<T>> where T : Entity
         try
         {
             Set.Update(entity);
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
             return ResponseResult<T>.Ok(entity);
         }
         catch (Exception ex)
@@ -54,7 +54,7 @@ public class ServiceBase<T> : IServiceBase<T,ResponseResult<T>> where T : Entity
 
             }
             Set.Remove(entity);
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
             return ResponseResult<T>.Ok(entity);
         }
         catch (Exception ex)

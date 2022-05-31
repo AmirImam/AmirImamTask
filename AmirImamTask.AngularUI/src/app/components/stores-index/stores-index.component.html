@@ -1,0 +1,22 @@
+<FormContainer>
+
+    <a [routerLink]="['/stores/create']">Create New</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Store name</th>
+                <th>Adminstrator</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let context of StoresList">
+                <td>{{context.StoreName}}</td>
+                <td>{{context.PersonName}}</td>
+                <td>
+                    <a [routerLink]="['/stores/edit',context.Id]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</FormContainer>

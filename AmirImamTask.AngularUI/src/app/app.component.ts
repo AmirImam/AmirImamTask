@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.UserAccount.DetectLogged();
     if (this.Session.Me != null) {
-      this.navigator.navigate(["/index"]);
+      //this.navigator.navigate(["/index"]);
     }
     else {
       this.navigator.navigate(["/login"]);
