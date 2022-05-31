@@ -1,0 +1,69 @@
+<FormContainer>
+    <div class="mb-3">
+        <label for="TransactionDate" class="form-label">Email address</label>
+        <input type="date" required [(ngModel)]="Model.TransactionDate" class="form-control" id="TransactionDate"
+            name="TransactionDate">
+    </div>
+
+    <div class="mb-3">
+        <label for="StoreId" class="form-label">Email address</label>
+        <select [(ngModel)]="Model.StoreId" (change)="ItemFinderInputKeyUp($event)" class="form-control" id="StoreId"
+            name="StoreId">
+            <option *ngFor="let store of StoresList" value="{{store.Id}}">{{store.StoreName}}</option>
+        </select>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Item
+                    <ErrorSummary [Errors]="Errors" [Keys]="['Item','ItemStore']"></ErrorSummary>
+                </th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Value</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <select class="form-control" [(ngModel)]="DetailModel.ItemId">
+                        <option *ngFor="let context of ItemsList" value="{{context.ItemId}}">{{context.ItemName}}
+                        </option>
+                    </select>
+                </th>
+                <th>{{DetailModel.Price}}</th>
+                <th>
+                    <input type="number" [(ngModel)]="DetailModel.Quantity" />
+                </th>
+                <th>{{DetailModel.Value}}</th>
+                <th>
+                    <button class="btn btn-success" (click)="AddItem()">Add</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let context of DetailsList;let i = index">
+                <td>{{context.ItemName}}</td>
+                <td>{{context.Price}}</td>
+                <td>{{context.Quantity}}</td>
+                <td>{{context.Value}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="RemoveItem(i)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>{{Model.TotalPrices}}</th>
+                <th>{{Model.ItemsCount}}</th>
+                <th>{{Model.Net}}</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <button (click)="Submit();" class="btn btn-success">
+        <h4>Submit</h4>
+    </button>
+</FormContainer>

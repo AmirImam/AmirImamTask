@@ -10,4 +10,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Store> Stores { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<ItemStore> ItemStores { get; set; }    
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<TransactionDetail> TransactionDetails { get; set; }
 }

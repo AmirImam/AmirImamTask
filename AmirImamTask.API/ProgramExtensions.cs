@@ -29,6 +29,9 @@ public static class ProgramExtensions
         builder.Services.AddScoped<IItemService, ItemService>();
         builder.Services.AddScoped<IStoreService, StoreService>();
         builder.Services.AddScoped<IItemStoreService, ItemStoreService>();
+
+        builder.Services.AddScoped<ITransactionService, TransactionService>();
+        builder.Services.AddScoped<ITransactionDetailService, TransactionDetailService>();
     }
 
     private static void RegisterAppServices(this WebApplicationBuilder builder)
@@ -37,6 +40,7 @@ public static class ProgramExtensions
 
         builder.Services.AddControllers().AddNewtonsoftJson(opt =>
         {
+            opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             opt.UseMemberCasing();
         });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

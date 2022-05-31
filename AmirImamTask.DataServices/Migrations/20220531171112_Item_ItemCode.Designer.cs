@@ -4,6 +4,7 @@ using AmirImamTask.DataServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmirImamTask.DataServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220531171112_Item_ItemCode")]
+    partial class Item_ItemCode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,67 +128,6 @@ namespace AmirImamTask.DataServices.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Store");
-                });
-
-            modelBuilder.Entity("AmirImamTask.Entities.Transaction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ItemsCount")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Net")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("StoreId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("TotalPrices")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("Transaction");
-                });
-
-            modelBuilder.Entity("AmirImamTask.Entities.TransactionDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int>("TransactionFactor")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("TransactionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("TransactionId");
-
-                    b.ToTable("TransactionDetail");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -411,30 +352,6 @@ namespace AmirImamTask.DataServices.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("AmirImamTask.Entities.Transaction", b =>
-                {
-                    b.HasOne("AmirImamTask.Entities.Store", "Store")
-                        .WithMany("Transactions")
-                        .HasForeignKey("StoreId");
-
-                    b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("AmirImamTask.Entities.TransactionDetail", b =>
-                {
-                    b.HasOne("AmirImamTask.Entities.Item", "Item")
-                        .WithMany("TransactionDetails")
-                        .HasForeignKey("ItemId");
-
-                    b.HasOne("AmirImamTask.Entities.Transaction", "Transaction")
-                        .WithMany("TransactionDetails")
-                        .HasForeignKey("TransactionId");
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Transaction");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -489,8 +406,6 @@ namespace AmirImamTask.DataServices.Migrations
             modelBuilder.Entity("AmirImamTask.Entities.Item", b =>
                 {
                     b.Navigation("ItemStores");
-
-                    b.Navigation("TransactionDetails");
                 });
 
             modelBuilder.Entity("AmirImamTask.Entities.Person", b =>
@@ -501,13 +416,6 @@ namespace AmirImamTask.DataServices.Migrations
             modelBuilder.Entity("AmirImamTask.Entities.Store", b =>
                 {
                     b.Navigation("ItemStores");
-
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("AmirImamTask.Entities.Transaction", b =>
-                {
-                    b.Navigation("TransactionDetails");
                 });
 #pragma warning restore 612, 618
         }

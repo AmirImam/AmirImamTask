@@ -5,4 +5,5 @@ export class Item {
     public ItemName: string = "";
     public ItemDescription?: string;
     public Price: number = 0;
+    public ItemCode: string = "";
 }

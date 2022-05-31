@@ -5,26 +5,26 @@ namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
+public class TransactionDetailController : ControllerBase, ITransactionDetailServiceBase<IActionResult>
 {
-    private readonly IItemService service;
+    private readonly ITransactionDetailService service;
 
-    public ItemController(IItemService service)
+    public TransactionDetailController(ITransactionDetailService service)
     {
         this.service = service;
     }
     
     [HttpGet]
-    public async Task<IEnumerable<Item>> GetAllAsync() => await service.GetAllAsync();
+    public async Task<IEnumerable<TransactionDetail>> GetAllAsync() => await service.GetAllAsync();
     
     
     [HttpGet]
     [Route("/api/[controller]/{id}")]
-    public async Task<Item> GetAsync(Guid id) => await service.GetAsync(id);
+    public async Task<TransactionDetail> GetAsync(Guid id) => await service.GetAsync(id);
     
     
     [HttpPost]
-    public async Task<IActionResult> CreateAsync(Item entity)
+    public async Task<IActionResult> CreateAsync(TransactionDetail entity)
     {
         var result = await service.CreateAsync(entity);
         if(result.Success == true)
@@ -35,7 +35,7 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
     }
     
     [HttpPut]
-    public async Task<IActionResult> UpdateAsync(Item entity)
+    public async Task<IActionResult> UpdateAsync(TransactionDetail entity)
     {
         var result = await service.UpdateAsync(entity);
         if (result.Success == true)
@@ -55,10 +55,12 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
         }
         return BadRequest(result);
     }
-
     [HttpGet]
-    [Route("/api/Item/GetItemBalances")]
-    public async Task<IEnumerable<ItemStoreDto>> GetItemBalancesAsync()
-        => await service.GetItemBalancesAsync();
+    [Route("/api/TransactionDetail/FindItemsByStoreAsync/{storeId}")]
+    public async Task<IEnumerable<TransactionDetailDto>> FindItemsByStoreAsync(Guid storeId)
+    {
+        var result = await service.FindItemsByStoreAsync(storeId);
+        return result;
+    }
 }
 

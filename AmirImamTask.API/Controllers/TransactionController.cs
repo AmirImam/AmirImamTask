@@ -1,30 +1,28 @@
 
-using AmirImamTask.Entities.Dtos;
-
 namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
+public class TransactionController : ControllerBase, ITransactionServiceBase<IActionResult>
 {
-    private readonly IItemService service;
+    private readonly ITransactionService service;
 
-    public ItemController(IItemService service)
+    public TransactionController(ITransactionService service)
     {
         this.service = service;
     }
     
     [HttpGet]
-    public async Task<IEnumerable<Item>> GetAllAsync() => await service.GetAllAsync();
+    public async Task<IEnumerable<Transaction>> GetAllAsync() => await service.GetAllAsync();
     
     
     [HttpGet]
     [Route("/api/[controller]/{id}")]
-    public async Task<Item> GetAsync(Guid id) => await service.GetAsync(id);
+    public async Task<Transaction> GetAsync(Guid id) => await service.GetAsync(id);
     
     
     [HttpPost]
-    public async Task<IActionResult> CreateAsync(Item entity)
+    public async Task<IActionResult> CreateAsync(Transaction entity)
     {
         var result = await service.CreateAsync(entity);
         if(result.Success == true)
@@ -35,7 +33,7 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
     }
     
     [HttpPut]
-    public async Task<IActionResult> UpdateAsync(Item entity)
+    public async Task<IActionResult> UpdateAsync(Transaction entity)
     {
         var result = await service.UpdateAsync(entity);
         if (result.Success == true)
@@ -56,9 +54,7 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
         return BadRequest(result);
     }
 
-    [HttpGet]
-    [Route("/api/Item/GetItemBalances")]
-    public async Task<IEnumerable<ItemStoreDto>> GetItemBalancesAsync()
-        => await service.GetItemBalancesAsync();
+    
+
 }
 
