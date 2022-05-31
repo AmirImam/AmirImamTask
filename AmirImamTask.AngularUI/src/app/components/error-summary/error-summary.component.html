@@ -1,0 +1,11 @@
+<div *ngIf="Errors.length > 0;">
+    <div *ngFor="let key of Keys">
+
+        <ul *ngIf="ErrorsContainsKey(key)">
+            <li *ngFor="let error of GetErrorsByKey(key).Value" class="text-danger">
+                {{FormatMessage(error)}}
+            </li>
+        </ul>
+    </div>
+
+</div>

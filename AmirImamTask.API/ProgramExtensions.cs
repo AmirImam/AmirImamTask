@@ -10,6 +10,15 @@ public static class ProgramExtensions
         builder.RegisterAppServices();
         builder.RegisterIdentity();
         builder.RegisterBusinessServices();
+        builder.Services.AddCors(opt =>
+        {
+            opt.AddPolicy("GeneralPolicy", policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.AllowAnyOrigin();
+            });
+        });
         return builder;
         
     }
@@ -26,7 +35,10 @@ public static class ProgramExtensions
     {
         // Add services to the container.
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers().AddNewtonsoftJson(opt =>
+        {
+            opt.UseMemberCasing();
+        });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
