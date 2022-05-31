@@ -1,3 +1,28 @@
 <FormContainer>
     <h4>Stores for item {{ItemModel.ItemName}}</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Store</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ItemStoresList"
+                [style.background-color]="item.ItemStoreId == null?'#FDDECA':'#A0D6B4'">
+                <td>{{item.StoreName}}</td>
+                <td>{{item.ItemName}}</td>
+                <td>{{item.Quantity}}</td>
+
+                <td *ngIf="item.ItemStoreId == null;else InStore">
+                    <button class="btn btn-success" (click)="AddItemToStore(item)">Add</button>
+                </td>
+                <ng-template #InStore>
+                    <td></td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
 </FormContainer>
