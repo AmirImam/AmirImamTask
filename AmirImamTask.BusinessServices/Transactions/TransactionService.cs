@@ -34,8 +34,8 @@ public class TransactionService : ServiceBase<Transaction>, ITransactionService
                         return ResponseResult<Transaction>.Error("Item", "Item quantity is not enough");
                     }
 
-                    itemStore.Quantity += (detail.Quantity * detail.TransactionFactor);
-                    Context.ItemStores.Update(itemStore);
+                    //itemStore.Quantity += (detail.Quantity * detail.TransactionFactor);
+                    //Context.ItemStores.Update(itemStore);
                 }
                 await Context.SaveChangesAsync();
                 dbTrans.Commit();
