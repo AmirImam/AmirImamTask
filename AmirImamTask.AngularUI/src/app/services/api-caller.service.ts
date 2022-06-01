@@ -11,7 +11,7 @@ export class ApiCallerService {
 
   constructor(private Session: SessionManagerService) { }
 
-  private BaseUrl: string = "https://localhost:7231/api/";
+  public BaseUrl: string = "https://localhost:7231/api/";
 
   private get RequestHeaders(): Headers {
     let headers: HeadersInit = new Headers();

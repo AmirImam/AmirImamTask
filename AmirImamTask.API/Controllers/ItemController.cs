@@ -1,4 +1,5 @@
 
+using AmirImamTask.API.Services;
 using AmirImamTask.Entities.Dtos;
 
 namespace AmirImamTask.API.Controllers;
@@ -8,10 +9,12 @@ namespace AmirImamTask.API.Controllers;
 public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
 {
     private readonly IItemService service;
+    private readonly ReportsService reportsService;
 
-    public ItemController(IItemService service)
+    public ItemController(IItemService service,ReportsService reportsService)
     {
         this.service = service;
+        this.reportsService = reportsService;
     }
     
     [HttpGet]
@@ -60,5 +63,18 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
     [Route("/api/Item/GetItemBalances")]
     public async Task<IEnumerable<ItemStoreDto>> GetItemBalancesAsync()
         => await service.GetItemBalancesAsync();
+
+    [HttpGet]
+    [Route("/api/Item/BalancesReport")]
+    public async Task<IActionResult> BalancesReportAsync()
+    {
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+        var dataSource = await service.GetItemBalancesAsync();
+        
+        reportsService.ReportName = "ItemsBalances.rdl";
+        reportsService.DataSource = new("DataSet1", dataSource);
+        var reportResult = reportsService.Execute();
+        return File(reportResult, "application/pdf");
+    }
 }
 

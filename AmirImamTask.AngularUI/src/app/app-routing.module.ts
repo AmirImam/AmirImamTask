@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ItemBalancesReportComponent } from './components/item-balances-report/item-balances-report.component';
+
 import { ItemStoresComponent } from './components/item-stores/item-stores.component';
 import { ItemsFormComponent } from './components/items-form/items-form.component';
 import { ItemsIndexComponent } from './components/items-index/items-index.component';
@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: "items/create", component: ItemsFormComponent, canActivate: [LoginGuardService] },
   { path: "items/edit/:Id", component: ItemsFormComponent, canActivate: [LoginGuardService] },
   { path: "item-stores/:Id", component: ItemStoresComponent, canActivate: [LoginGuardService] },
-  { path: "item/report/:Id", component: ItemBalancesReportComponent, canActivate: [LoginGuardService] },
+
 
   { path: "transactions/:Index", component: TransactionsFormComponent, canActivate: [LoginGuardService] },
 

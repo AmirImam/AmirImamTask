@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiCallerService } from './services/api-caller.service';
 import { SessionManagerService } from './services/session-manager.service';
 import { UserAccountService } from './services/user-account.service';
 
@@ -11,6 +12,7 @@ import { UserAccountService } from './services/user-account.service';
 export class AppComponent implements OnInit {
   title = 'AmirImamTask.AngularUI';
   constructor(public Session: SessionManagerService,
+    public Api: ApiCallerService,
     private navigator: Router,
     private UserAccount: UserAccountService) {
 

@@ -18,7 +18,7 @@ import { ItemsIndexComponent } from './components/items-index/items-index.compon
 import { ItemsFormComponent } from './components/items-form/items-form.component';
 import { ItemStoresComponent } from './components/item-stores/item-stores.component';
 import { TransactionsFormComponent } from './components/transactions-form/transactions-form.component';
-import { ItemBalancesReportComponent } from './components/item-balances-report/item-balances-report.component';
+
 
 @NgModule({
   declarations: [
@@ -35,8 +35,7 @@ import { ItemBalancesReportComponent } from './components/item-balances-report/i
     ItemsIndexComponent,
     ItemsFormComponent,
     ItemStoresComponent,
-    TransactionsFormComponent,
-    ItemBalancesReportComponent
+    TransactionsFormComponent
 
   ],
   imports: [

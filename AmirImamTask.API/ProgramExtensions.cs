@@ -1,4 +1,5 @@
-﻿using AmirImamTask.DataServices;
+﻿using AmirImamTask.API.Services;
+using AmirImamTask.DataServices;
 using EdenPlugins.ApiCoreConfiguration;
 
 namespace AmirImamTask.API;
@@ -25,6 +26,7 @@ public static class ProgramExtensions
 
     private static void RegisterBusinessServices(this WebApplicationBuilder builder)
     {
+        
         builder.Services.AddScoped<IPersonService, PersonService>();
         builder.Services.AddScoped<IItemService, ItemService>();
         builder.Services.AddScoped<IStoreService, StoreService>();
@@ -32,6 +34,8 @@ public static class ProgramExtensions
 
         builder.Services.AddScoped<ITransactionService, TransactionService>();
         builder.Services.AddScoped<ITransactionDetailService, TransactionDetailService>();
+
+        builder.Services.AddScoped<ReportsService>();
     }
 
     private static void RegisterAppServices(this WebApplicationBuilder builder)
