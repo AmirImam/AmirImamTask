@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmirImamTask.API", "AmirImamTask.API\AmirImamTask.API.csproj", "{79A06055-E411-4FE1-8B74-6F361A38CB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmirImamTask.API", "AmirImamTask.API\AmirImamTask.API.csproj", "{79A06055-E411-4FE1-8B74-6F361A38CB87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmirImamTask.DataServices", "AmirImamTask.DataServices\AmirImamTask.DataServices.csproj", "{5139C4DA-9D75-46AA-8D50-05C555A3F3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmirImamTask.DataServices", "AmirImamTask.DataServices\AmirImamTask.DataServices.csproj", "{5139C4DA-9D75-46AA-8D50-05C555A3F3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmirImamTask.Entities", "AmirImamTask.Entities\AmirImamTask.Entities.csproj", "{ABADB0E3-4ACD-48BF-97FA-BEFB18F79644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmirImamTask.Entities", "AmirImamTask.Entities\AmirImamTask.Entities.csproj", "{ABADB0E3-4ACD-48BF-97FA-BEFB18F79644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmirImamTask.BusinessServices", "AmirImamTask.BusinessServices\AmirImamTask.BusinessServices.csproj", "{177F1AA1-6277-4147-B474-8ACB7002E00F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmirImamTask.BusinessServices", "AmirImamTask.BusinessServices\AmirImamTask.BusinessServices.csproj", "{177F1AA1-6277-4147-B474-8ACB7002E00F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmirImamTask.APITests", "AmirImamTask.APITests\AmirImamTask.APITests.csproj", "{DFEE7D3A-CE80-4A72-8B91-D3F3F6277348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{177F1AA1-6277-4147-B474-8ACB7002E00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{177F1AA1-6277-4147-B474-8ACB7002E00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{177F1AA1-6277-4147-B474-8ACB7002E00F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFEE7D3A-CE80-4A72-8B91-D3F3F6277348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFEE7D3A-CE80-4A72-8B91-D3F3F6277348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFEE7D3A-CE80-4A72-8B91-D3F3F6277348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFEE7D3A-CE80-4A72-8B91-D3F3F6277348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
