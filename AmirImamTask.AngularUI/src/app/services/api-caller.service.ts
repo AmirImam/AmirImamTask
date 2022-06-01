@@ -17,7 +17,7 @@ export class ApiCallerService {
     let headers: HeadersInit = new Headers();
     headers.set("content-type", "application/json");
     if (this.Session.Me != null) {
-      headers.set("Authorization", `bearer ${this.Session.Me.AccessToken}`);
+      headers.set("authorization", `bearer ${this.Session.Me.AccessToken}`);
     }
     return headers;
   }

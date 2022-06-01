@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Person } from '../models/Person';
+import { ApiCallerService } from './api-caller.service';
 import { SessionManagerService } from './session-manager.service';
 
 @Injectable({
@@ -9,6 +10,7 @@ import { SessionManagerService } from './session-manager.service';
 export class UserAccountService {
 
   constructor(private Session: SessionManagerService,
+    private Api: ApiCallerService,
     private Navigator: Router) { }
 
 
@@ -16,6 +18,7 @@ export class UserAccountService {
     //In real application this will be encrypted
     sessionStorage.setItem("Person", JSON.stringify(person));
     this.Session.Me = person;
+
     this.Navigator.navigate(["/index"]);
   }
 

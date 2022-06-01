@@ -5,6 +5,7 @@ namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class PersonController : ControllerBase, IPersonServiceBase<IActionResult>
 {
     private readonly IPersonService service;
@@ -26,6 +27,7 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
     
     
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> CreateAsync(Person entity)
     {
         var result = await service.CreateAsync(entity);
@@ -60,6 +62,7 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
     
     [HttpPost]
     [Route("/api/Person/Login")]
+    [AllowAnonymous]
     public async Task<IActionResult> LoginAsync(LoginModel model)
     {
         model.Token = configuration["TokenKey"];
@@ -83,6 +86,7 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
     }
     [HttpPost]
     [Route("/api/Person/CreateOtp/{email}")]
+    [AllowAnonymous]
     public async Task<IActionResult> CreateOtpAsync(string email)
     {
         var result = await service.CreateOtpAsync(email);
@@ -94,6 +98,7 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
     }
     [HttpPost]
     [Route("/api/Person/SubmitOtp/{id}/{otp}")]
+    [AllowAnonymous]
     public async Task<IActionResult> SubmitOtpAsync(Guid id, string otp)
     {
         var result = await service.SubmitOtpAsync(id,otp);
@@ -105,6 +110,7 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
     }
     [HttpPost]
     [Route("/api/Person/ResetPassword/{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> ResetPasswordAsync(Guid id, ChangePasswordModel model)
     {
         var result = await service.ResetPasswordAsync(id, model);

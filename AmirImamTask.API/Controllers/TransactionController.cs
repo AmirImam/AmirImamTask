@@ -3,6 +3,7 @@ namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class TransactionController : ControllerBase, ITransactionServiceBase<IActionResult>
 {
     private readonly ITransactionService service;

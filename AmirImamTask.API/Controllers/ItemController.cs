@@ -2,10 +2,12 @@
 using AmirImamTask.API.Services;
 using AmirImamTask.Entities.Dtos;
 
+
 namespace AmirImamTask.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
 {
     private readonly IItemService service;
@@ -66,6 +68,7 @@ public class ItemController : ControllerBase, IItemServiceBase<IActionResult>
 
     [HttpGet]
     [Route("/api/Item/BalancesReport")]
+    [AllowAnonymous]
     public async Task<IActionResult> BalancesReportAsync()
     {
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
