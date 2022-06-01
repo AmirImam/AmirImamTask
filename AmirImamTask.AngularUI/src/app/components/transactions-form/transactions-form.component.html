@@ -37,7 +37,9 @@
                 </th>
                 <th>{{DetailModel.Value}}</th>
                 <th>
-                    <button class="btn btn-success" (click)="AddItem()">Add</button>
+                    <button class="btn btn-success" (click)="AddItem()">
+                        <i class="fa fa-plus"></i>
+                    </button>
                 </th>
             </tr>
         </thead>
@@ -48,7 +50,9 @@
                 <td>{{context.Quantity}}</td>
                 <td>{{context.Value}}</td>
                 <td>
-                    <button class="btn btn-danger" (click)="RemoveItem(i)">Remove</button>
+                    <button class="btn btn-danger" (click)="RemoveItem(i)">
+                        <i class="fa fa-times"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>

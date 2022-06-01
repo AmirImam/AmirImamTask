@@ -17,7 +17,9 @@
                 <td>{{item.Quantity}}</td>
 
                 <td *ngIf="item.ItemStoreId == null;else InStore">
-                    <button class="btn btn-success" (click)="AddItemToStore(item)">Add</button>
+                    <button class="btn btn-success" (click)="AddItemToStore(item)">
+                        <i class="fa fa-plus"></i>
+                    </button>
                 </td>
                 <ng-template #InStore>
                     <td></td>

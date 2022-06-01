@@ -16,10 +16,14 @@
                 <td>{{context.ItemName}}</td>
                 <td>{{context.Price}}</td>
                 <td>
-                    <a [routerLink]="['/items/edit',context.Id]">Edit</a>
+                    <a [routerLink]="['/items/edit',context.Id]">
+                        <i class="fa fa-edit" title="Edit"></i>
+                    </a>
                 </td>
                 <td>
-                    <a [routerLink]="['/item-stores',context.Id]">Stores</a>
+                    <a [routerLink]="['/item-stores',context.Id]">
+                        <i class="fa fa-archive" title="Stores"></i>
+                    </a>
                 </td>
 
             </tr>
