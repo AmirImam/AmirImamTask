@@ -22,4 +22,25 @@ public class ItemService : ServiceBase<Item>, IItemService
                       };
         return await results.ToListAsync();
     }
+
+    public override async Task<ResponseResult<Item>> CreateAsync(Item entity)
+    {
+        var demo = Set.Where(it => it.ItemCode == entity.ItemCode).Any();
+        if(demo == true)
+        {
+            return ResponseResult<Item>.Error("ItemCode", "Item code already exists");
+        }
+        return await base.CreateAsync(entity);
+    }
+
+    public override async Task<ResponseResult<Item>> UpdateAsync(Item entity)
+    {
+        var demo = Set.Where(it => it.ItemCode == entity.ItemCode && it.Id != entity.Id).Any();
+        if (demo == true)
+        {
+            return ResponseResult<Item>.Error("ItemCode", "Item code already exists");
+        }
+
+        return await base.UpdateAsync(entity);
+    }
 }

@@ -7,6 +7,19 @@
         </div>
 
         <div class="mb-3">
+            <label for="ItemDescription" class="form-label">Description</label>
+            <textarea [(ngModel)]="Model.ItemDescription" class="form-control" name="ItemDescription"
+                id="ItemDescription"></textarea>
+            <ErrorSummary [Keys]="['ItemDescription']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+        <div class="mb-3">
+            <label for="ItemCode" class="form-label">Item code</label>
+            <input type="text" [(ngModel)]="Model.ItemCode" class="form-control" name="ItemCode" id="ItemCode" required>
+            <ErrorSummary [Keys]="['ItemCode']" [Errors]="Errors"></ErrorSummary>
+        </div>
+
+        <div class="mb-3">
             <label for="PersonName" class="form-label">Price</label>
             <input type="number" [(ngModel)]="Model.Price" class="form-control" name="Price" id="Price" required>
             <ErrorSummary [Keys]="['Price']" [Errors]="Errors"></ErrorSummary>
