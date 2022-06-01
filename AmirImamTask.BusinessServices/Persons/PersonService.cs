@@ -21,6 +21,28 @@ public class PersonService : ServiceBase<Person>, IPersonService
         this.userHelper = userHelper;
     }
 
+    public async Task<ResponseResult<Person>> ChangePasswordAsync(ChangePasswordModel model)
+    {
+        Person? person = Set.Where(it => it.Email == model.Email).FirstOrDefault();
+        if (person == null)
+        {
+            return ResponseResult<Person>.Error("Person", "Person Not Found");
+        }
+        IdentityUser? user = await userManager.FindByIdAsync(person.IdentityUserId);
+        if (user == null)
+        {
+            return ResponseResult<Person>.Error("Person", "User Not Found");
+        }
+
+        var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+        if (result.Succeeded == true)
+        {
+            return ResponseResult<Person>.Ok(person);
+        }
+        return new ResponseResult<Person>() { Errors = result.Errors.GroupBy(k => k.Code).ToDictionary(k => k.Key, v => v.Select(it => it.Description).ToList()) };
+
+    }
+
     public override async Task<ResponseResult<Person>> CreateAsync(Person entity)
     {
         var anyPersonByPhone = Set.Any(it => it.PhoneNumber == entity.PhoneNumber);
@@ -67,13 +89,13 @@ public class PersonService : ServiceBase<Person>, IPersonService
         //    return ResponseResult<Person>.Error("Email", "EmailNotConfirmed");
         //}
 
-        Person? member = await base.Set.Where(it => it.IdentityUserId == result.User.Id).FirstOrDefaultAsync();
-        if (member == null)
+        Person? person = await base.Set.Where(it => it.IdentityUserId == result.User.Id).FirstOrDefaultAsync();
+        if (person == null)
         {
             return ResponseResult<Person>.Error("Person", "NotFound");
         }
 
-        member.AccessToken = result.Token;
-        return ResponseResult<Person>.Ok(member);
+        person.AccessToken = result.Token;
+        return ResponseResult<Person>.Ok(person);
     }
 }

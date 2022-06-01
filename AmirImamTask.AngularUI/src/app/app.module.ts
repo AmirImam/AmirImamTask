@@ -18,6 +18,7 @@ import { ItemsIndexComponent } from './components/items-index/items-index.compon
 import { ItemsFormComponent } from './components/items-form/items-form.component';
 import { ItemStoresComponent } from './components/item-stores/item-stores.component';
 import { TransactionsFormComponent } from './components/transactions-form/transactions-form.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { TransactionsFormComponent } from './components/transactions-form/transa
     ItemsIndexComponent,
     ItemsFormComponent,
     ItemStoresComponent,
-    TransactionsFormComponent
+    TransactionsFormComponent,
+    ChangePasswordComponent
 
   ],
   imports: [

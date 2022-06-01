@@ -70,4 +70,15 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
         }
         return BadRequest(result);
     }
+    [HttpPost]
+    [Route("/api/Person/ChangePassword")]
+    public async Task<IActionResult> ChangePasswordAsync(ChangePasswordModel model)
+    {
+        var result = await service.ChangePasswordAsync(model);
+        if(result.Success == true)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
 }
