@@ -12,6 +12,9 @@ public class Person : EntityBase
     [Required, StringLength(20)]
     public string PhoneNumber { get; set; } = string.Empty;
     public string Locker { get; set; } = string.Empty;
+    [StringLength(4)]
+    public string? CurrentOtp { get; set; }
+
     public ICollection<Store>? Stores { get; set; }
 
     [NotMapped]

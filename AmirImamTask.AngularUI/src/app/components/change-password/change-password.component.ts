@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangePasswordModel } from 'src/app/models/ChangePasswordModel';
 import { ComponentBase } from 'src/app/models/ComponentBase';
 import { Person } from 'src/app/models/Person';
@@ -15,12 +15,17 @@ export class ChangePasswordComponent extends ComponentBase implements OnInit {
 
   constructor(private Api: ApiCallerService,
     private Session: SessionManagerService,
+    private Path: ActivatedRoute,
     private Navigator: Router) {
     super();
   }
 
   public Model = new ChangePasswordModel();
+  private resetEmail?: string;
   ngOnInit(): void {
+    if (this.Session.Me == null) {
+      this.resetEmail = this.Path.snapshot.params["email"];
+    }
   }
 
   public async Submit() {
@@ -41,7 +46,13 @@ export class ChangePasswordComponent extends ComponentBase implements OnInit {
     if (this.Errors.length > 0) {
       return;
     }
-    this.Model.Email = this.Session.Me?.Email as string;
+    if (this.Session.Me != null) {
+
+      this.Model.Email = this.Session.Me?.Email as string;
+    }
+    else {
+      this.Model.Email = this.resetEmail as string;
+    }
     let result = await this.Api.PostAsync<Person>("Person/ChangePassword", this.Model);
     if (result.Success == false) {
       this.AssignErrors(result.Errors);

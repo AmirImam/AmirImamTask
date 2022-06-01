@@ -37,6 +37,9 @@ public class PersonService : ServiceBase<Person>, IPersonService
         var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
         if (result.Succeeded == true)
         {
+            person.Locker = model.NewPassword.Encrypt(person.IdentityUserId);
+            Set.Update(person);
+            await Context.SaveChangesAsync();
             return ResponseResult<Person>.Ok(person);
         }
         return new ResponseResult<Person>() { Errors = result.Errors.GroupBy(k => k.Code).ToDictionary(k => k.Key, v => v.Select(it => it.Description).ToList()) };
@@ -74,6 +77,21 @@ public class PersonService : ServiceBase<Person>, IPersonService
         return result;
     }
 
+    public async Task<ResponseResult<Person>> CreateOtpAsync(string email)
+    {
+        Person? person = await Set.Where(it => it.Email == email).FirstOrDefaultAsync();
+        if (person == null)
+        {
+            return ResponseResult<Person>.Error("Email", "Not found");
+        }
+
+        Random random = new();
+        string otp = random.Next(1111, 9999).ToString();
+        person.CurrentOtp = otp;
+        Set.Update(person);
+        await Context.SaveChangesAsync();
+        return ResponseResult<Person>.Ok(new() { Id = person.Id });
+    }
 
     public async Task<ResponseResult<Person>> LoginAsync(LoginModel model)
     {
@@ -97,5 +115,27 @@ public class PersonService : ServiceBase<Person>, IPersonService
 
         person.AccessToken = result.Token;
         return ResponseResult<Person>.Ok(person);
+    }
+
+    public async Task<ResponseResult<Person>> ResetPasswordAsync(Guid id, ChangePasswordModel model)
+    {
+        Person? person = await Set.Where(it => it.Id == id).FirstOrDefaultAsync();
+        model.CurrentPassword = person.Locker.Decrypt(person.IdentityUserId);
+        model.Email = person.Email;
+        return await ChangePasswordAsync(model);
+    }
+
+    public async Task<ResponseResult<Person>> SubmitOtpAsync(Guid id, string otp)
+    {
+        Person? person = await Set.Where(it => it.Id == id).FirstOrDefaultAsync();
+        if (person.CurrentOtp == otp)
+        {
+
+            person.CurrentOtp = null;
+            Set.Update(person);
+            await Context.SaveChangesAsync();
+            return ResponseResult<Person>.Ok(person);
+        }
+        return ResponseResult<Person>.Error("Otp", "Code is incorrect");
     }
 }

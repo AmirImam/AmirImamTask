@@ -8,6 +8,7 @@ import { ItemsFormComponent } from './components/items-form/items-form.component
 import { ItemsIndexComponent } from './components/items-index/items-index.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { StartupComponent } from './components/startup/startup.component';
 import { StoresFormComponent } from './components/stores-form/stores-form.component';
 import { StoresIndexComponent } from './components/stores-index/stores-index.component';
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "change-password", component: ChangePasswordComponent, canActivate: [LoginGuardService] },
+  { path: "change-password/:email", component: ChangePasswordComponent },
+  { path: "reset-password", component: ResetPasswordComponent },
 
   { path: "index", component: HomeComponent, canActivate: [LoginGuardService] },
   { path: "users", component: UsersIndexComponent, canActivate: [LoginGuardService] },

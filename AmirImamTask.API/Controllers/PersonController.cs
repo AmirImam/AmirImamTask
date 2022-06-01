@@ -81,4 +81,37 @@ public class PersonController : ControllerBase, IPersonServiceBase<IActionResult
         }
         return BadRequest(result);
     }
+    [HttpPost]
+    [Route("/api/Person/CreateOtp/{email}")]
+    public async Task<IActionResult> CreateOtpAsync(string email)
+    {
+        var result = await service.CreateOtpAsync(email);
+        if (result.Success == true)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+    [HttpPost]
+    [Route("/api/Person/SubmitOtp/{id}/{otp}")]
+    public async Task<IActionResult> SubmitOtpAsync(Guid id, string otp)
+    {
+        var result = await service.SubmitOtpAsync(id,otp);
+        if (result.Success == true)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+    [HttpPost]
+    [Route("/api/Person/ResetPassword/{id}")]
+    public async Task<IActionResult> ResetPasswordAsync(Guid id, ChangePasswordModel model)
+    {
+        var result = await service.ResetPasswordAsync(id, model);
+        if (result.Success == true)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
 }

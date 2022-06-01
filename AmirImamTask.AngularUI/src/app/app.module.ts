@@ -19,6 +19,7 @@ import { ItemsFormComponent } from './components/items-form/items-form.component
 import { ItemStoresComponent } from './components/item-stores/item-stores.component';
 import { TransactionsFormComponent } from './components/transactions-form/transactions-form.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     ItemsFormComponent,
     ItemStoresComponent,
     TransactionsFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent
 
   ],
   imports: [

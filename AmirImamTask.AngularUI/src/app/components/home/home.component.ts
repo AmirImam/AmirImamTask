@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
       { Title: "Use bootstrap", State: true },
       { Title: "Register & Login", State: true },
       { Title: "Change password", State: true },
-      { Title: "Reset password", State: false },
+      { Title: "Reset password", State: false, Notes: "It needs active email credentials, and for security reasons, I can't provide mine. But you can test it by getting OTP from database" },
       { Title: "Define Master Data", State: true },
       { Title: "Transactions", State: true },
       { Title: "Report for Item Balances", State: true },
