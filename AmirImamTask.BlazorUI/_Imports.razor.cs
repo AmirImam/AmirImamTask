@@ -1,0 +1,9 @@
+﻿global using AmirImamTask.ClientServices;
+global using Microsoft.AspNetCore.Components;
+global using AmirImamTask.Entities;
+global using AmirImamTask.Entities.Helpers;
+global using AmirImamTask.BlazorUI.Services;
+global using Blazored.SessionStorage;
+global using AmirImamTask.BlazorUI.Shared;
+global using AmirImamTask.Entities.Dtos;
+global using AmirImamTask.Entities.Infrastructures;

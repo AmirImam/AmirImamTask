@@ -1,0 +1,28 @@
+@page "/stores/create"
+@page "/stores/edit/{Id:guid}"
+@inherits ViewBase
+<FormContainer>
+    <EditForm Model=model OnValidSubmit=Submit>
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Store name</label>
+            <input type="text" @bind="model.StoreName" class="form-control" name="StoreName" id="StoreName" required>
+            <ErrorSummary Keys="@(new string[]{"StoreName"})" Errors="Errors" />
+        </div>
+
+
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Store adminstrator</label>
+            <select @bind="model.PersonId" class="form-control" name="PersonId" id="PersonId">
+                @foreach (Person person in personsList)
+                {
+                    <option value="@person.Id">@person.PersonName</option>
+
+                }
+            </select>
+            <ErrorSummary Keys="@(new string[]{"PersonId"})" Errors="Errors" />
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-dark" href="/stores">Back</a>
+    </EditForm>
+</FormContainer>

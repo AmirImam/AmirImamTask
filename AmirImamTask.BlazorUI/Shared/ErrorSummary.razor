@@ -1,0 +1,45 @@
+@if(Errors.Count > 0){
+<div>
+    @foreach (var key in Keys)
+    {
+    <div>
+@if(ErrorsContainsKey(key)){
+    <ul>
+        @foreach (var error in GetErrorsByKey(key).Value)
+        {
+            <li class="text-danger">
+                @FormatMessage(error)
+            </li>
+        }
+            
+        </ul>
+}
+    
+    </div>    
+    }
+    
+
+</div>
+
+}
+
+@code {
+    [Parameter] public IEnumerable<string> Keys { get; set; } = new List<string>();
+    [Parameter] public Dictionary<string, List<string>> Errors { get; set; } = new();
+
+    public bool ErrorsContainsKey(string key)
+    {
+        return this.Errors.Any(it => it.Key == key);
+    }
+
+    public KeyValuePair<string, List<string>> GetErrorsByKey(string key)
+    {
+        var item = this.Errors.FirstOrDefault(it => it.Key == key);
+        return item;
+    }
+
+    public string FormatMessage(string message)
+    {
+        return message;
+    }
+}

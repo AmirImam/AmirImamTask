@@ -1,12 +1,12 @@
 <FormContainer>
     <div class="mb-3">
-        <label for="TransactionDate" class="form-label">Email address</label>
+        <label for="TransactionDate" class="form-label">Date</label>
         <input type="date" required [(ngModel)]="Model.TransactionDate" class="form-control" id="TransactionDate"
             name="TransactionDate">
     </div>
 
     <div class="mb-3">
-        <label for="StoreId" class="form-label">Email address</label>
+        <label for="StoreId" class="form-label">Store</label>
         <select [(ngModel)]="Model.StoreId" (change)="ItemFinderInputKeyUp($event)" class="form-control" id="StoreId"
             name="StoreId">
             <option *ngFor="let store of StoresList" value="{{store.Id}}">{{store.StoreName}}</option>

@@ -1,0 +1,29 @@
+<CascadingValue Value=this>
+    @switch (viewName)
+    {
+        case "login":
+            <Login />
+            break;
+        case "register":
+            <Register />
+            break;
+        default:
+            break;
+    }
+</CascadingValue>
+
+
+@code {
+    private string viewName = "login";
+    public void ShowLoginView()
+    {
+        viewName = "login";
+        StateHasChanged();
+    }
+
+    public void ShowRegisterView()
+    {
+        viewName = "register";
+        StateHasChanged();
+    }
+}

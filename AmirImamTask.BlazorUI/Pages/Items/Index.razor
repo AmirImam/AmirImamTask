@@ -1,0 +1,38 @@
+@page "/items"
+@inherits ViewBase
+
+<FormContainer>
+
+    <a href="/items/create">Create New</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Item name</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <Virtualize Items=itemsList>
+
+                <tr>
+                    <td>@context.ItemName</td>
+                    <td>@context.Price</td>
+                    <td>
+                        <a href="@($"/items/edit/{context.Id}")">
+                            <i class="fa fa-edit" title="Edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@($"/items/stores/{context.Id}")">
+                            <i class="fa fa-archive" title="Stores"></i>
+                        </a>
+                    </td>
+
+                </tr>
+            </Virtualize>
+        </tbody>
+    </table>
+</FormContainer>

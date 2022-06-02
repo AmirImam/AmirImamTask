@@ -1,0 +1,49 @@
+@inherits ViewBase
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <EditForm Model=Model OnValidSubmit="Submit">
+                    <div class="mb-3">
+                        <label for="PersonName" class="form-label">Full name</label>
+                        <input type="text" @bind="Model.PersonName" class="form-control" name="PersonName"
+                            id="PersonName" required>
+                        <ErrorSummary Keys="@(new string[]{"PersonName"})" Errors="Errors" />
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" required @bind="Model.Email" class="form-control" id="Email" name="Email">
+                        <ErrorSummary Keys="@(new string[]{"Email"})" Errors="Errors" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Phone number</label>
+                        <input type="tel" @bind="Model.PhoneNumber" class="form-control" id="PhoneNumber"
+                            name="PhoneNumber">
+
+                        <ErrorSummary Keys="@(new string[]{"PhoneNumber"})" Errors="Errors" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Locker" class="form-label">Password</label>
+                        <input type="password" @bind="Model.Locker" class="form-control" id="Locker" required
+                            name="Locker">
+                        <ErrorSummary Keys="@(new string[]{"PasswordRequiresDigit",
+                            "PasswordRequiresNonAlphanumeric",
+                            "PasswordRequiresLower",
+                            "PasswordRequiresUpper",
+                            "PasswordsMustBeAtLeast6Characters",
+                            "PasswordTooShort"})" Errors="Errors" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button @onclick=@(()=> Container.ShowLoginView()) type="button" class="btn btn-link">Already have
+                        account?</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</section>

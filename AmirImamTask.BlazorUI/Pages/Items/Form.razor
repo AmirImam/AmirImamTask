@@ -1,0 +1,39 @@
+@page "/items/create"
+@page "/items/edit/{Id:guid}"
+@inherits ViewBase
+<FormContainer>
+    <EditForm Model=Model OnValidSubmit="Submit">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Item name</label>
+            <input type="text" @bind="Model.ItemName" class="form-control" name="ItemName" id="ItemName" required>
+            <ErrorSummary Keys="@(new string[]{"ItemName"})" Errors="Errors" />
+        </div>
+
+        <div class="mb-3">
+            <label for="ItemDescription" class="form-label">Description</label>
+            <textarea @bind="Model.ItemDescription" class="form-control" name="ItemDescription"
+                id="ItemDescription"></textarea>
+
+            <ErrorSummary Keys="@(new string[]{"ItemDescription"})" Errors="Errors" />
+        </div>
+
+        <div class="mb-3">
+            <label for="ItemCode" class="form-label">Item code</label>
+            <input type="text" @bind="Model.ItemCode" class="form-control" name="ItemCode" id="ItemCode" required>
+
+            <ErrorSummary Keys="@(new string[]{"ItemCode"})" Errors="Errors" />
+        </div>
+
+        <div class="mb-3">
+            <label for="PersonName" class="form-label">Price</label>
+            <input type="number" @bind="Model.Price" class="form-control" name="Price" id="Price" required>
+
+            <ErrorSummary Keys="@(new string[]{"Price"})" Errors="Errors" />
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a class="btn btn-dark" href="/items">Back</a>
+    </EditForm>
+</FormContainer>

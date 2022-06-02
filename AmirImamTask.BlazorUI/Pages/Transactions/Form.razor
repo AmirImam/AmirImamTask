@@ -1,0 +1,88 @@
+@page "/transactions/{Factor:int}"
+@inherits ViewBase
+
+<FormContainer>
+    <div class="mb-3">
+        <label for="TransactionDate" class="form-label">Date</label>
+        <input type="date" required @bind="Model.TransactionDate" class="form-control" id="TransactionDate"
+            name="TransactionDate">
+    </div>
+
+    <div class="mb-3">
+        <label for="StoreId" class="form-label">Store</label>
+        <select value="@Model.StoreId" @onchange="@(e=>ItemFinderInputKeyUp(e))" class="form-control" id="StoreId"
+            name="StoreId">
+            @foreach (Store store in StoresList)
+            {
+                <option value="@store.Id">@store.StoreName</option>
+            }
+        </select>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Item
+                    <ErrorSummary Errors="Errors" Keys="@(new string[]{"Item","ItemStore"})" />
+                </th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Value</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <select class="form-control" @bind="DetailModel.ItemId">
+                        @foreach (var context in ItemsList)
+                        {
+                            <option value="@context.ItemId">@context.ItemName
+                            </option>
+
+                        }
+                    </select>
+                </th>
+                <th>@DetailModel.Price</th>
+                <th>
+                    <input type="number" @bind="DetailModel.Quantity" />
+                </th>
+                <th>@DetailModel.Value</th>
+                <th>
+                    <button class="btn btn-success" @onclick="AddItem">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var context in DetailsList)
+            {
+                int index = DetailsList.IndexOf(context);
+                <tr>
+                    <td>@context.ItemName</td>
+                    <td>@context.Price</td>
+                    <td>@context.Quantity</td>
+                    <td>@context.Value</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="@(()=>RemoveItem(index))">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>@Model.TotalPrices</th>
+                <th>@Model.ItemsCount</th>
+                <th>@Model.Net</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <button @onclick="Submit" class="btn btn-success">
+        <h4>Submit</h4>
+    </button>
+</FormContainer>
